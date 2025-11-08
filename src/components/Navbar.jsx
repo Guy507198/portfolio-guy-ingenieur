@@ -21,8 +21,9 @@ export default function Navbar({ dict, lang }) {
         onClick={() => setOpen(false)}
         className={[
           "px-3 py-2 rounded-md text-sm transition",
-          active ? "text-emerald-300 bg-white/5 ring-1 ring-emerald-400/30"
-                 : "text-zinc-100 hover:text-black hover:bg-emerald-400",
+          active
+            ? "text-emerald-300 bg-white/5 ring-1 ring-emerald-400/30"
+            : "text-zinc-100 hover:text-black hover:bg-emerald-400",
         ].join(" ")}
       >
         {children}
@@ -33,20 +34,38 @@ export default function Navbar({ dict, lang }) {
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-black/60 backdrop-blur border-b border-white/10">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
-        <Link href={`/${lang}`} className="font-mono text-emerald-400 hover:text-emerald-300">
-          GD // CYBER
-        </Link>
+        {/* GAUCHE : brand + badge Admin */}
+        <div className="flex items-center gap-3">
+          <Link href={`/${lang}`} className="font-mono text-emerald-400 hover:text-emerald-300">
+            GD // CYBER
+          </Link>
 
+          {/* Bouton Admin */}
+          <Link
+            href="/admin/login"
+            className="text-xs px-2 py-1 rounded-lg border border-emerald-400/30
+                       text-emerald-300/90 hover:text-emerald-100 hover:bg-emerald-500/10
+                       transition-colors"
+            title="Espace administration"
+          >
+            Admin
+          </Link>
+        </div>
+
+        {/* DROITE : liens de navigation */}
         <nav className="hidden md:flex items-center gap-2">
           <Item href={`/${lang}/labs`}>{dict?.nav?.labs ?? "Labs"}</Item>
           <Item href={`/${lang}#about`}>{dict?.nav?.about ?? "About"}</Item>
           <Item href={`/${lang}#skills`}>{dict?.nav?.skills ?? "Skills"}</Item>
           <Item href={`/${lang}#projects`}>{dict?.nav?.projects ?? "Projects"}</Item>
           <Item href={`/${lang}/certifications`}>{dict?.nav?.certs ?? "Certifications"}</Item>
-          <Item href="/assets/CV_Guy-Dorlant.pdf" target="_blank">{dict?.nav?.cv ?? "CV"}</Item>
+          <Item href="/assets/CV_Guy-Dorlant.pdf" target="_blank">
+            {dict?.nav?.cv ?? "CV"}
+          </Item>
           <Item href={`/${lang}#contact`}>{dict?.nav?.contact ?? "Contact"}</Item>
         </nav>
 
+        {/* Burger mobile */}
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden text-zinc-100 border border-white/20 rounded px-3 py-1"

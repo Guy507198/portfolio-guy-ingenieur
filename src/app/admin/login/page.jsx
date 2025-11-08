@@ -1,3 +1,4 @@
+// src/app/admin/login/page.jsx
 "use client";
 
 import { useState } from "react";
@@ -7,25 +8,30 @@ export default function AdminLogin() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [token, setToken] = useState(""); // si tu veux la variante token
   const [err, setErr] = useState("");
 
-  async function submit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
     setErr("");
+
     const res = await fetch("/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password /*, token*/ }),
+      body: JSON.stringify({ email, password }),
     });
-    if (res.ok) router.replace("/admin/dashboard");
-    else setErr("Erreur");
+
+    if (res.ok) {
+      router.replace("/admin/dashboard");
+    } else {
+      const j = await res.json().catch(() => ({}));
+      setErr(j?.error || "Identifiants invalides");
+    }
   }
 
   return (
     <div className="min-h-[60vh] grid place-items-center">
       <form
-        onSubmit={submit}
+        onSubmit={onSubmit}
         className="w-full max-w-sm bg-white/5 border border-white/10 rounded-2xl p-6"
       >
         <h2 className="text-lg font-semibold mb-4">Admin Login</h2>
@@ -38,6 +44,7 @@ export default function AdminLogin() {
           className="w-full h-11 px-3 rounded-xl bg-black/60 border border-white/10 text-white mb-3"
           required
         />
+
         <input
           type="password"
           value={password}
@@ -46,12 +53,6 @@ export default function AdminLogin() {
           className="w-full h-11 px-3 rounded-xl bg-black/60 border border-white/10 text-white mb-3"
           required
         />
-        {/* <input
-          value={token}
-          onChange={(e) => setToken(e.target.value)}
-          placeholder="Token (optionnel)"
-          className="w-full h-11 px-3 rounded-xl bg-black/60 border border-white/10 text-white mb-3"
-        /> */}
 
         {err && <div className="text-red-400 text-sm mb-2">{err}</div>}
 

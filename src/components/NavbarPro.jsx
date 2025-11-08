@@ -6,15 +6,13 @@ import { useEffect, useState } from "react";
 
 export default function NavbarPro({ dict, lang }) {
   const [open, setOpen] = useState(false);
-  const [currentPath, setCurrentPath] = useState(""); // défini après montage
+  const [currentPath, setCurrentPath] = useState("");
 
   useEffect(() => {
-    // Défini uniquement côté client → évite toute divergence SSR/CSR
     setCurrentPath(window.location.pathname + window.location.hash);
   }, []);
 
   const Item = ({ href, children }) => {
-    // Actif calculé uniquement après montage (sinon jamais "actif" au SSR)
     const active =
       currentPath && (href === `/${lang}` ? currentPath === href : currentPath.startsWith(href));
 
@@ -40,12 +38,26 @@ export default function NavbarPro({ dict, lang }) {
       <div className="mx-auto max-w-6xl px-4">
         <div className="mt-4 rounded-2xl border border-white/15 bg-black/55 backdrop-blur-md shadow-[0_0_40px_rgba(16,185,129,.15)]">
           <div className="flex items-center justify-between px-4 py-3">
-            <Link
-              href={`/${lang}`}
-              className="font-mono text-emerald-400 hover:text-emerald-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded"
-            >
-              GD // CYBER
-            </Link>
+            {/* GAUCHE : brand + badge Admin */}
+            <div className="flex items-center gap-3">
+              <Link
+                href={`/${lang}`}
+                className="font-mono text-emerald-400 hover:text-emerald-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded"
+              >
+                GD // CYBER
+              </Link>
+
+              {/* Bouton Admin */}
+              <Link
+                href="/admin/login"
+                className="text-xs px-2 py-1 rounded-lg border border-emerald-400/30
+                           text-emerald-300/90 hover:text-emerald-100 hover:bg-emerald-500/10
+                           transition-colors"
+                title="Espace administration"
+              >
+                Admin
+              </Link>
+            </div>
 
             {/* Desktop */}
             <nav className="hidden md:flex items-center gap-2">
@@ -104,10 +116,18 @@ export default function NavbarPro({ dict, lang }) {
               </Item>
               <Item href={`/${lang}#contact`}>{dict?.nav?.contact ?? "Contact"}</Item>
               <div className="flex gap-2 pt-1">
-                <a href="https://github.com/Guy507198" target="_blank" className="px-3 py-2 rounded-md text-sm text-zinc-100 border border-white/20 hover:text-black hover:bg-white transition">
+                <a
+                  href="https://github.com/Guy507198"
+                  target="_blank"
+                  className="px-3 py-2 rounded-md text-sm text-zinc-100 border border-white/20 hover:text-black hover:bg-white transition"
+                >
                   GitHub
                 </a>
-                <a href="https://www.linkedin.com/in/guy-dorlant-moubaghou/" target="_blank" className="px-3 py-2 rounded-md text-sm text-zinc-100 border border-white/20 hover:text-black hover:bg-white transition">
+                <a
+                  href="https://www.linkedin.com/in/guy-dorlant-moubaghou/"
+                  target="_blank"
+                  className="px-3 py-2 rounded-md text-sm text-zinc-100 border border-white/20 hover:text-black hover:bg-white transition"
+                >
                   LinkedIn
                 </a>
               </div>

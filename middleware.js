@@ -1,42 +1,32 @@
+// src/middleware.js
 import { NextResponse } from "next/server";
 
-const locales = ["fr", "en"];
-const defaultLocale = "fr";
-const PUBLIC_FILE = /\.(.*)$/;
-
 export function middleware(req) {
-  const { pathname } = req.nextUrl;
+  const url = req.nextUrl.clone();
+  const path = url.pathname;
 
-  // ✅ Si c'est la racine "/", on redirige vers /fr
-  if (pathname === "/") {
-    const url = req.nextUrl.clone();
-    url.pathname = `/${defaultLocale}`;
+  // On ne gère ici que /admin/*
+  if (!path.startsWith("/admin")) return NextResponse.next();
+
+  const isLogin = path === "/admin/login";
+  const adminAuth = req.cookies.get("admin_auth")?.value === "1";
+
+  // Non authentifié => toute page /admin/* (sauf /admin/login) redirige vers /admin/login
+  if (!adminAuth && !isLogin) {
+    url.pathname = "/admin/login";
     return NextResponse.redirect(url);
   }
 
-  // ❌ Ignore API, next, assets, fichiers publics...
-  if (
-    pathname.startsWith("/api") ||
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/assets") ||
-    PUBLIC_FILE.test(pathname)
-  ) {
-    return NextResponse.next();
+  // Authentifié mais essaie d'aller sur /admin/login => renvoyer au dashboard
+  if (adminAuth && isLogin) {
+    url.pathname = "/admin/dashboard";
+    return NextResponse.redirect(url);
   }
 
-  // ✅ Si l'URL contient déjà fr/en → OK
-  const hasLocale = locales.some(
-    (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`)
-  );
-  if (hasLocale) return NextResponse.next();
-
-  // 🧠 Sinon, injecte /fr
-  const url = req.nextUrl.clone();
-  url.pathname = `/${defaultLocale}${pathname}`;
-  return NextResponse.redirect(url);
+  return NextResponse.next();
 }
 
-// 👇 Application du middleware sur tout sauf fichiers publics
 export const config = {
-  matcher: ["/((?!_next|api|assets|.*\\..*$).*)"],
+  // On déclenche le middleware sur TOUT /admin/*
+  matcher: ["/admin/:path*"],
 };
