@@ -1,0 +1,50 @@
+[
+  {
+    "code": "CEH",
+    "name": "Certified Ethical Hacker",
+    "area": "Offensive",
+    "tags": ["Burp", "OWASP", "Network Pentest"],
+    "file": "/certifications/CEH.pdf",
+    "image": "/cert-logos/ceh.png"
+  },
+  {
+    "code": "SC-200",
+    "name": "Microsoft Security Operations Analyst",
+    "area": "SOC",
+    "tags": ["Sentinel", "KQL", "SOAR"],
+    "file": "/certifications/SC-200.pdf",
+    "image": "/cert-logos/sc-200.png"
+  },
+  {
+    "code": "AZ-500",
+    "name": "Azure Security Engineer",
+    "area": "Cloud",
+    "tags": ["Defender for Cloud", "Zero Trust", "Key Vault"],
+    "file": "/certifications/AZ-500.pdf",
+    "image": "/cert-logos/az-500.png"
+  },
+  {
+    "code": "SC-300",
+    "name": "Identity and Access Administrator",
+    "area": "IAM",
+    "tags": ["MFA", "CA", "SSO", "PIM"],
+    "file": "/certifications/SC-300.pdf",
+    "image": "/cert-logos/sc-300.png"
+  },
+  {
+    "code": "SC-100",
+    "name": "Cybersecurity Architect",
+    "area": "Architecture",
+    "tags": ["Risk", "Strategy", "GRC"],
+    "file": "/certifications/SC-100.pdf",
+    "image": "/cert-logos/sc-100.png"
+  },
+  {
+    "code": "TOEIC",
+    "name": "TOEIC",
+    "area": "Languages",
+    "tags": ["English"],
+    "file": "/certifications/TOEIC.pdf",
+    "image": "/cert-logos/toeic.png"
+  }
+]

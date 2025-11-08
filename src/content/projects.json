@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "soc-rdp-bruteforce",
+    "title": "SOC — RDP Brute-force Detection",
+    "summary": "KQL rule + SOAR playbook, Sentinel dashboard & incident report.",
+    "tags": ["Sentinel","KQL","SOAR"]
+  },
+  {
+    "slug": "azure-zero-trust",
+    "title": "Azure Zero Trust Lab",
+    "summary": "Conditional Access, Defender for Cloud, Key Vault.",
+    "tags": ["Zero Trust","Defender","Key Vault"]
+  },
+  {
+    "slug": "ceh-dvwa-exploit",
+    "title": "CEH — DVWA Exploit & Mitigation",
+    "summary": "Burp Suite workflow + remediation & OWASP mapping.",
+    "tags": ["Burp","OWASP","CEH"]
+  }
+]

@@ -1,0 +1,75 @@
+{
+  "brand": "GD // CYBER",
+  "nav_labs": "Labs",
+  "nav_skills": "Skills",
+  "nav_projects": "Projects",
+  "nav_cv": "CV",
+  "nav_contact": "Contact",
+
+  "term_line1": "Booting cyber profile...",
+  "term_line2": "Detection / Defense / Governance / Ethical Offense: ACTIVE ✅",
+
+  "hero_title": "Guy-Dorlant MOUBAGHOU-MANGUI",
+  "hero_sub": "Cloud & Cybersecurity Engineer — Network & Threat Defense",
+  "hero_p": "I design secure architectures, detect threats, perform ethical attacks to strengthen systems, and prepare organizations for high-level cybersecurity.",
+  "cta_projects": "View projects",
+  "cta_cv": "Download CV",
+
+  "skills_title": "Cyber Skills",
+  "skills_tagline": "Hybrid Red/Blue. Cloud & Network Defense. Identity-First Security. Governance & Risk.",
+
+  "projects_title": "Projects & Labs",
+  "projects_tagline": "Concrete excerpts (Case Files). Full details coming in their dedicated page.",
+
+  "contact_title": "Contact",
+  "contact_email": "Email",
+  "contact_phone": "Phone",
+  "contact_cv": "Download",
+
+  "skills_item_soc": {
+    "chip": "SOC / SC-200",
+    "title": "SOC / SC-200",
+    "text": "Sentinel, KQL, XDR, SOAR, incident response."
+  },
+  "skills_item_azure": {
+    "chip": "Azure Security / AZ-500",
+    "title": "Azure Security / AZ-500",
+    "text": "Zero Trust, Defender for Cloud, Key Vault, NSG/WAF."
+  },
+  "skills_item_identity": {
+    "chip": "Identity / SC-300",
+    "title": "Identity / SC-300",
+    "text": "MFA, Conditional Access, SSO (SAML/OIDC), PIM."
+  },
+  "skills_item_archi": {
+    "chip": "Architecture / SC-100",
+    "title": "Architecture / SC-100",
+    "text": "Risk-driven design, hybrid, BCP/DRP."
+  },
+  "skills_item_offensive": {
+    "chip": "Offensive / CEH",
+    "title": "Offensive / CEH",
+    "text": "Nmap, DVWA, Burp, MITM, WPA2, Wireshark."
+  },
+  "skills_item_grc": {
+    "chip": "GRC / ISO",
+    "title": "Governance, Risk & Compliance",
+    "text": "Policies, ISO 27005 Risk Register, IR Playbook, Audit."
+  },
+
+  "proj_soc": {
+    "title": "SOC — RDP Brute-force Detection",
+    "desc": "KQL rule + SOAR playbook, Sentinel dashboard & incident report.",
+    "tags": ["Sentinel", "KQL", "SOAR"]
+  },
+  "proj_azure": {
+    "title": "Azure Zero Trust Lab",
+    "desc": "Conditional Access, Defender for Cloud, Key Vault.",
+    "tags": ["Zero Trust", "Defender", "Key Vault"]
+  },
+  "proj_ceh": {
+    "title": "CEH — DVWA Exploit & Mitigation",
+    "desc": "Burp Suite workflow + remediation & OWASP mapping.",
+    "tags": ["Burp", "OWASP", "CEH"]
+  }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "soc-rdp-detection",
+    "date": "2025-10-15",
+    "title": "SOC — Détection RDP brute-force (KQL + SOAR)",
+    "excerpt": "KQL rule, playbook SOAR, tableau de bord Sentinel et rapport d'incident.",
+    "tags": ["Sentinel", "KQL", "SOAR"]
+  },
+  {
+    "slug": "azure-zero-trust-lab",
+    "date": "2025-09-20",
+    "title": "Azure Zero Trust — Lab (CA, Defender, Key Vault)",
+    "excerpt": "Accès conditionnel, Defender for Cloud, clés Key Vault.",
+    "tags": ["Zero Trust", "Defender", "Key Vault"]
+  }
+]

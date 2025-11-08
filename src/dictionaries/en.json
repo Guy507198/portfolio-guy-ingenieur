@@ -1,0 +1,103 @@
+{
+  "brand": "GD // CYBER",
+
+  "nav": {
+    "about": "About",
+    "labs": "Labs",
+    "skills": "Skills",
+    "projects": "Projects",
+    "certs": "Certifications",
+    "cv": "CV",
+    "contact": "Contact"
+  },
+
+  "term": {
+    "line1": "Booting cyber profile...",
+    "line2": "Detection / Defense / Governance / Ethical Offense: ACTIVE ✅"
+  },
+
+  "hero": {
+    "title": "Guy-Dorlant MOUBAGHOU-MANGUI",
+    "sub": "Cloud & Cybersecurity Engineer — Network & Threat Defense",
+    "p": "I design secure architectures, detect threats, perform ethical attacks to strengthen systems, and prepare organizations for high-level cybersecurity.",
+    "cta_projects": "View projects",
+    "cta_cv": "Download CV"
+  },
+
+  "skills": {
+    "title": "Cyber Skills",
+    "tagline": "Hybrid Red/Blue. Cloud & Network Defense. Identity-First Security. Governance & Risk.",
+    "items": [
+      { "chip": "SOC / SC-200", "title": "SOC / SC-200", "text": "Sentinel, KQL, XDR, SOAR, incident response.", "tags": ["KQL", "Sentinel", "Playbooks"] },
+      { "chip": "Azure Security / AZ-500", "title": "Azure Security / AZ-500", "text": "Zero Trust, Defender for Cloud, Key Vault, NSG/WAF.", "tags": ["Zero Trust", "Defender", "Key Vault"] },
+      { "chip": "Identity / SC-300", "title": "Identity / SC-300", "text": "MFA, Conditional Access, SSO (SAML/OIDC), PIM.", "tags": ["MFA", "CA", "SSO", "PIM"] },
+      { "chip": "Architecture / SC-100", "title": "Architecture / SC-100", "text": "Risk-driven design, hybrid, BCP/DRP.", "tags": ["Risk", "BCP/DRP", "Hybrid"] },
+      { "chip": "Offensive / CEH", "title": "Offensive / CEH", "text": "Nmap, DVWA, Burp, MITM, WPA2, Wireshark.", "tags": ["Nmap", "Burp", "Wireshark"] },
+      { "chip": "GRC / ISO", "title": "Governance, Risk & Compliance", "text": "Policies, ISO 27005 Risk Register, IR Playbook, Audit.", "tags": ["Policies", "Risk", "IR"] }
+    ]
+  },
+
+  "projects": {
+    "title": "Projects & Labs",
+    "tagline": "Concrete excerpts (Case Files). Full details coming in their dedicated page.",
+    "cards": [
+      { "title": "SOC — RDP Brute-force Detection", "desc": "KQL rule + SOAR playbook, Sentinel dashboard & incident report.", "tags": ["Sentinel", "KQL", "SOAR"] },
+      { "title": "Azure Zero Trust Lab", "desc": "Conditional Access, Defender for Cloud, Key Vault.", "tags": ["Zero Trust", "Defender", "Key Vault"] },
+      { "title": "CEH — DVWA Exploit & Mitigation", "desc": "Burp Suite workflow + remediation & OWASP mapping.", "tags": ["Burp", "OWASP", "CEH"] }
+    ]
+  },
+
+  "about": {
+    "title": "About",
+    "intro": "I’m a 5th-year engineering student (ESAIP) focused on Cloud & Cybersecurity. I connect SOC, Azure Security, IAM and GRC to real use cases and build a portfolio of labs aligned with my certifications.",
+    "status_chip": "Status",
+    "status_title": "5th-year Engineering Student — Cloud & Cyber",
+    "status_text": "Goals 2025/26: apprenticeship or first role in SOC/Cloud Security, then a path toward a future CISO role.",
+    "education_chip": "Education",
+    "education": [
+      { "title": "Engineering cycle — Computer & Networks", "school": "ESAIP", "years": "2021–2026" },
+      { "title": "Erasmus (planned) — cyber & data mix", "school": "UCLM / UAL", "years": "2025–2026" }
+    ],
+    "languages_chip": "Languages",
+    "languages": ["French (native)", "English (TOEIC)", "Spanish (basic)"],
+    "links_chip": "Networks & contact"
+  },
+
+  "links": {
+    "github": { "label": "GitHub", "url": "https://github.com/" },
+    "linkedin": { "label": "LinkedIn", "url": "https://www.linkedin.com/" },
+    "mailto": { "label": "Email", "url": "mailto:moubaghou06924318@gmail.com" }
+  },
+
+  "certs": {
+    "title": "Certifications",
+    "tagline": "Validated and in-progress certifications aligned with my labs (SOC, Azure, IAM, GRC, Offensive).",
+    "items": [
+      { "name": "EC-Council CEH", "track": "Offensive" },
+      { "name": "Microsoft SC-200 — Security Operations Analyst", "track": "SOC" },
+      { "name": "Microsoft AZ-500 — Azure Security Engineer", "track": "Cloud" },
+      { "name": "Microsoft SC-300 — Identity & Access Admin", "track": "IAM" },
+      { "name": "Microsoft SC-100 — Cybersecurity Architect", "track": "Architecture" },
+      { "name": "ISC² CC — Certified in Cybersecurity", "track": "Foundations" },
+      { "name": "TOEIC", "track": "Languages", "note": "Professional English" }
+    ]
+  },
+  
+  "common": {
+    "view": "View",
+    "download": "Download",
+    "backToSection": "Back to section"
+},
+  "certsPage": {
+    "title": "Certifications",
+    "tagline": "Validated and in-progress certifications aligned with my labs (SOC, Azure, IAM, GRC, Offensive).",
+    "breadcrumbHome": "Home"
+},
+
+  "contact": {
+    "title": "Contact",
+    "email": "Email",
+    "phone": "Phone",
+    "cv": "Download"
+  }
+}

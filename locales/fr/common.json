@@ -1,0 +1,75 @@
+{
+  "brand": "GD // CYBER",
+  "nav_labs": "Labs",
+  "nav_skills": "Compétences",
+  "nav_projects": "Projets",
+  "nav_cv": "CV",
+  "nav_contact": "Contact",
+
+  "term_line1": "Initialisation du profil cyber...",
+  "term_line2": "Détection / Défense / Gouvernance / Offensive éthique : ACTIVÉ ✅",
+
+  "hero_title": "Guy-Dorlant MOUBAGHOU-MANGUI",
+  "hero_sub": "Cloud & Cybersecurity Engineer — Network & Threat Defense",
+  "hero_p": "Je conçois des architectures sécurisées, détecte les menaces, exécute des attaques éthiques pour renforcer les systèmes, et prépare les organisations à une cybersécurité de haut niveau.",
+  "cta_projects": "Voir mes projets",
+  "cta_cv": "Télécharger CV",
+
+  "skills_title": "Compétences Cyber",
+  "skills_tagline": "Hybrid Red/Blue. Cloud & Network Defense. Identity-First Security. Governance & Risk.",
+
+  "projects_title": "Projets & Labs",
+  "projects_tagline": "Extraits concrets (dossiers “Case Files”). Détails complets à venir dans leur page dédiée.",
+
+  "contact_title": "Contact",
+  "contact_email": "Email",
+  "contact_phone": "Téléphone",
+  "contact_cv": "Télécharger",
+
+  "skills_item_soc": {
+    "chip": "SOC / SC-200",
+    "title": "SOC / SC-200",
+    "text": "Sentinel, KQL, XDR, SOAR, réponse à incident."
+  },
+  "skills_item_azure": {
+    "chip": "Azure Security / AZ-500",
+    "title": "Azure Security / AZ-500",
+    "text": "Zero Trust, Defender for Cloud, Key Vault, NSG/WAF."
+  },
+  "skills_item_identity": {
+    "chip": "Identity / SC-300",
+    "title": "Identity / SC-300",
+    "text": "MFA, Conditional Access, SSO (SAML/OIDC), PIM."
+  },
+  "skills_item_archi": {
+    "chip": "Architecture / SC-100",
+    "title": "Architecture / SC-100",
+    "text": "Conception pilotée par le risque, hybride, BCP/DRP."
+  },
+  "skills_item_offensive": {
+    "chip": "Offensive / CEH",
+    "title": "Offensive / CEH",
+    "text": "Nmap, DVWA, Burp, MITM, WPA2, Wireshark."
+  },
+  "skills_item_grc": {
+    "chip": "GRC / ISO",
+    "title": "Gouvernance, Risques & Conformité",
+    "text": "Policies, Risk Register ISO 27005, IR Playbook, Audit."
+  },
+
+  "proj_soc": {
+    "title": "SOC — Détection brute-force RDP",
+    "desc": "Règle KQL + playbook SOAR, dashboard Sentinel & rapport d'incident.",
+    "tags": ["Sentinel", "KQL", "SOAR"]
+  },
+  "proj_azure": {
+    "title": "Azure Zero Trust Lab",
+    "desc": "Conditional Access, Defender for Cloud, Key Vault.",
+    "tags": ["Zero Trust", "Defender", "Key Vault"]
+  },
+  "proj_ceh": {
+    "title": "CEH — DVWA Exploit & Mitigation",
+    "desc": "Workflow Burp Suite + remédiation et mapping OWASP.",
+    "tags": ["Burp", "OWASP", "CEH"]
+  }
+}

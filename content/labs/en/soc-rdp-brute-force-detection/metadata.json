@@ -1,0 +1,30 @@
+{
+  "title": "SOC — RDP Brute-force Detection",
+  "summary": "KQL rule + SOAR playbook, Sentinel dashboard & incident report.",
+  "description": "Detect and respond to RDP brute force attacks with Sentinel.",
+  "tags": ["Sentinel", "KQL", "SOAR"],
+  "level": "Intermediate",
+  "date": "2025-10",
+  "area": "SOC",
+  "stack": ["Sentinel", "Log Analytics", "Logic Apps", "Azure VM"],
+  "objectives": [
+    "Detect multiple RDP failures within a time window",
+    "Build a KQL rule and dashboard",
+    "Automate basic response via Logic Apps"
+  ],
+  "steps": [
+    "Deploy Windows VM + enable auditing",
+    "Ingest logs into Log Analytics",
+    "Write KQL rule (thresholds, time window)",
+    "Logic Apps playbook (enrichment/notification)"
+  ],
+  "results": [
+    "Correlated alerts in Sentinel",
+    "Dashboard with failure rate",
+    "Exportable incident report"
+  ],
+  "artifacts": {
+    "repo": "",
+    "pdf": ""
+  }
+}
