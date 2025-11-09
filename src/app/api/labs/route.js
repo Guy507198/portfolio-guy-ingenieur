@@ -1,11 +1,11 @@
-// src/app/api/projects/route.js
+// src/app/api/labs/route.js
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase";
 import { randomUUID } from "crypto";
 
 export async function GET() {
   const { data, error } = await supabaseAdmin
-    .from("projects")
+    .from("labs")
     .select("*")
     .order("created_at", { ascending: false });
 
@@ -15,8 +15,9 @@ export async function GET() {
 
 /**
  * POST multipart:
- * - locale (FR/EN), title (req), subtitle?, tags "Azure,SIEM", link_url?
- * - cover? (image) -> uploads/projects/covers/
+ * - locale (FR/EN), title (req), subtitle?, tags (comma string "SOC,Azure")
+ * - cover? (image)  -> uploads/labs/covers/
+ * - doc?   (pdf/any)-> uploads/labs/docs/
  */
 export async function POST(req) {
   try {
@@ -24,16 +25,15 @@ export async function POST(req) {
     const title = form.get("title")?.toString().trim();
     const locale = (form.get("locale") || "FR").toString().trim();
     const subtitle = form.get("subtitle")?.toString().trim() || null;
-    const link_url = form.get("link_url")?.toString().trim() || null;
     const tagsStr = form.get("tags")?.toString().trim() || "";
     const tags = tagsStr ? tagsStr.split(",").map(t => t.trim()).filter(Boolean) : null;
 
     if (!title) return NextResponse.json({ error: "title requis" }, { status: 400 });
 
-    const upload = async (file) => {
+    const upload = async (file, sub) => {
       const buf = Buffer.from(await file.arrayBuffer());
       const ext = file.name.split(".").pop();
-      const path = `projects/covers/${Date.now()}-${randomUUID()}.${ext}`;
+      const path = `labs/${sub}/${Date.now()}-${randomUUID()}.${ext}`;
       const { error } = await supabaseAdmin.storage.from("uploads").upload(path, buf, {
         contentType: file.type, upsert: false,
       });
@@ -42,13 +42,15 @@ export async function POST(req) {
       return pub.publicUrl;
     };
 
-    let cover_url = null;
+    let cover_url = null, doc_url = null;
     const cover = form.get("cover");
-    if (cover && typeof cover === "object") cover_url = await upload(cover);
+    if (cover && typeof cover === "object") cover_url = await upload(cover, "covers");
+    const doc = form.get("doc");
+    if (doc && typeof doc === "object") doc_url = await upload(doc, "docs");
 
     const { data, error } = await supabaseAdmin
-      .from("projects")
-      .insert([{ locale, title, subtitle, tags, cover_url, link_url }])
+      .from("labs")
+      .insert([{ locale, title, subtitle, tags, cover_url, doc_url }])
       .select()
       .single();
 
@@ -62,7 +64,7 @@ export async function POST(req) {
 export async function DELETE(req) {
   const { id } = await req.json();
   if (!id) return NextResponse.json({ error: "id requis" }, { status: 400 });
-  const { error } = await supabaseAdmin.from("projects").delete().eq("id", id);
+  const { error } = await supabaseAdmin.from("labs").delete().eq("id", id);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ ok: true });
 }

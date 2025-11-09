@@ -1,72 +1,59 @@
-"use client";
+// src/components/CertsWall.jsx
+import { supabaseAnon } from "@/lib/supabase";
 
-import Image from "next/image";
-import certs from "@/content/certifications.json";
-import { motion } from "framer-motion";
+export default async function CertsWall() {
+  // Table créée plus tôt: "certs" (NOT "certifications")
+  const { data: certs, error } = await supabaseAnon
+    .from("certs")
+    .select("*")
+    .order("issue_date", { ascending: false })
+    .order("created_at", { ascending: false });
 
-export default function CertsWall({ dict }) {
-  const t = dict?.common || { view: "Voir", download: "Télécharger", backToSection: "Retour à la section" };
-  const card = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: .35 } } };
+  if (error) {
+    console.error("CertsWall error:", error.message);
+    return null;
+  }
+  if (!certs?.length) return null;
+
+  // Construire des URLs publiques (bucket en lecture publique)
+  // cf. getPublicUrl — pas besoin de signature si lecture publique activée
+  const mapped = certs.map((c) => {
+    const badge = c.badge_path
+      ? supabaseAnon.storage.from(process.env.SUPABASE_BUCKET).getPublicUrl(c.badge_path).data?.publicUrl
+      : null;
+    const cert = c.cert_path
+      ? supabaseAnon.storage.from(process.env.SUPABASE_BUCKET).getPublicUrl(c.cert_path).data?.publicUrl
+      : null;
+    return { ...c, badge_url: badge, cert_url: cert };
+  });
 
   return (
-    <section id="certifications" className="px-6 pt-28 relative">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-black mb-3">{dict?.certs?.title ?? "Certifications"}</h2>
-        <p className="text-slate-400 mb-8">{dict?.certs?.tagline ?? "Validations et en-cours alignés sur mes labs."}</p>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {certs.map((c, i) => (
-            <motion.article
-              key={`${c.code}-${i}`}
-              variants={card}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-10% 0px" }}
-              className="group glass glass-hover overflow-hidden relative"
-            >
-              {/* zone image */}
-              <div className="relative h-40">
-                <Image
-                  src={c.image}
-                  alt={`${c.name} badge`}
-                  fill
-                  sizes="(max-width:768px) 100vw, 33vw"
-                  className="object-contain p-6 transition-transform duration-500 group-hover:scale-105"
-                  priority={i < 3}
-                />
-                {/* glow subtil */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
-              </div>
-
-              {/* contenu */}
-              <div className="p-5">
-                <p className="text-emerald-400 font-mono text-xs mb-2">// {c.area} · {c.code}</p>
-                <h3 className="font-semibold">{c.name}</h3>
-
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {c.tags.map((t) => (
-                    <span key={t} className="badge-3d">{t}</span>
-                  ))}
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      {mapped.map(c => (
+        <a
+          key={c.id}
+          href={c.cert_url || "#"}
+          target={c.cert_url ? "_blank" : undefined}
+          className="group p-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition"
+        >
+          <div className="flex items-center gap-3">
+            {c.badge_url ? (
+              <img src={c.badge_url} alt="" className="w-12 h-12 rounded bg-black/30 object-contain" />
+            ) : (
+              <div className="w-12 h-12 bg-white/10 rounded" />
+            )}
+            <div>
+              <div className="font-medium">{c.vendor} • {c.code}</div>
+              <div className="text-sm opacity-80">{c.title}</div>
+              {c.issue_date && (
+                <div className="text-xs opacity-60 mt-0.5">
+                  {new Date(c.issue_date).toLocaleDateString()}
                 </div>
-
-                <div className="mt-4 flex gap-3">
-                  <a href={c.file} target="_blank" rel="noreferrer" className="btn-ghost">{t.view}</a>
-                  <a href={c.file} download className="btn-primary">{t.download}</a>
-                </div>
-              </div>
-
-              {/* anneau neon au survol */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition neon-ring pointer-events-none" />
-            </motion.article>
-          ))}
-        </div>
-
-        <div className="mt-6">
-          <a href="#certifications" className="text-emerald-400 hover:text-emerald-300 text-sm">
-            ← {t.backToSection}
-          </a>
-        </div>
-      </div>
-    </section>
+              )}
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
   );
 }

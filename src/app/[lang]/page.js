@@ -1,3 +1,4 @@
+// src/app/[lang]/page.js
 import Navbar from "@/components/Navbar";
 import Glow from "@/components/Glow";
 import Skills from "@/components/Skills";
@@ -5,11 +6,11 @@ import Projects from "@/components/Projects";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import CertsWall from "@/components/CertsWall";
-import ProjectsGrid from "@/components/ProjectsGrid";
+// import ProjectsGrid from "@/components/ProjectsGrid";
 import { getDictionary } from "@/lib/get-dictionary";
 
 export default async function Page({ params }) {
-  const { lang } = await params; // Next 16: params est une Promise
+  const { lang } = await params; // Next 16
   const dict = await getDictionary(lang);
 
   return (
@@ -25,21 +26,21 @@ export default async function Page({ params }) {
         <About dict={dict} />
       </section>
 
-      {/* SKILLS */}
+      {/* SKILLS (Supabase) */}
       <section id="skills" className="scroll-mt-24">
-        <Skills dict={dict} />
+        <Skills />
       </section>
 
-      {/* PROJECTS (cartes “case files” de la home) */}
+      {/* PROJECTS (tes “case files” de la home) */}
       <section id="projects" className="scroll-mt-24">
         <Projects dict={dict} />
       </section>
 
-      {/* LABS / PROJETS détaillés (grille) – si tu veux l’afficher aussi en home */}
+      {/* LABS / PROJETS détaillés – si tu veux l’afficher aussi en home */}
       {/* <ProjectsGrid dict={dict} lang={lang} /> */}
 
-      {/* CERTIFICATIONS (la section porte déjà l’id "certifications") */}
-      <CertsWall dict={dict} />
+      {/* CERTIFICATIONS (Supabase) */}
+      <CertsWall />
 
       {/* CONTACT */}
       <section id="contact" className="py-16 px-6 border-t border-white/10 scroll-mt-24">
